@@ -129,4 +129,8 @@ public class MethodInfo {
         this.methodDescriptor);
   }
 
+public int getAccess() {
+	return access;
+}
+
 }

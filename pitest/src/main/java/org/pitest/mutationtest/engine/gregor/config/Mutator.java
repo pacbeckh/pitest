@@ -44,10 +44,35 @@ import org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator.Choice;
 import org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator;
-import org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveIncrementsMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.SwitchMutator;
+
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.ABSMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.AODMutator1;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.AODMutator2;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.AORMutator1;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.AORMutator2;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.AORMutator3;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.AORMutator4;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.CRCRMutator1;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.CRCRMutator2;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.CRCRMutator3;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.CRCRMutator4;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.CRCRMutator5;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.CRCRMutator6;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.OBBNMutator1;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.OBBNMutator2;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.OBBNMutator3;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.RORMutator1;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.RORMutator2;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.RORMutator3;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.RORMutator4;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.RORMutator5;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.UOIMutator1;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.UOIMutator2;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.UOIMutator3;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.extended.UOIMutator4;
 
 public final class Mutator {
 
@@ -154,15 +179,81 @@ public final class Mutator {
     add("EXPERIMENTAL_ARGUMENT_PROPAGATION",
         ArgumentPropagationMutator.ARGUMENT_PROPAGATION_MUTATOR);
 
-    /**
-     * Experimental mutator that replaces method call with this
-     */
-    add("EXPERIMENTAL_NAKED_RECEIVER", NakedReceiverMutator.NAKED_RECEIVER);
-
     addGroup("REMOVE_SWITCH", RemoveSwitchMutator.makeMutators());
     addGroup("DEFAULTS", defaults());
     addGroup("STRONGER", stronger());
+    
+    add("AOD1", AODMutator1.AOD_MUTATOR1);
+    add("AOD2", AODMutator2.AOD_MUTATOR2);
+    add("AOR1", AORMutator1.AOR_MUTATOR1);
+    add("AOR2", AORMutator2.AOR_MUTATOR2);
+    add("AOR3", AORMutator3.AOR_MUTATOR3);
+    add("AOR4", AORMutator4.AOR_MUTATOR4);
+    add("ROR1", RORMutator1.ROR_MUTATOR1);
+    add("ROR2", RORMutator2.ROR_MUTATOR2);
+    add("ROR3", RORMutator3.ROR_MUTATOR3);
+    add("ROR4", RORMutator4.ROR_MUTATOR4);
+    add("ROR5", RORMutator5.ROR_MUTATOR5);
+    add("UOI1", UOIMutator1.UOI_MUTATOR1);
+    add("UOI2", UOIMutator2.UOI_MUTATOR2);
+    add("UOI3", UOIMutator3.UOI_MUTATOR3);
+    add("UOI4", UOIMutator4.UOI_MUTATOR4);
+    add("ABS", ABSMutator.ABS_MUTATOR);
+    add("OBBN1", OBBNMutator1.OBBN_MUTATOR1);
+    add("OBBN2", OBBNMutator2.OBBN_MUTATOR2);
+    add("OBBN3", OBBNMutator3.OBBN_MUTATOR3);
+    add("CRCR1", CRCRMutator1.CRCR_MUTATOR1);
+    add("CRCR2", CRCRMutator2.CRCR_MUTATOR2);
+    add("CRCR3", CRCRMutator3.CRCR_MUTATOR3);
+    add("CRCR4", CRCRMutator4.CRCR_MUTATOR4);
+    add("CRCR5", CRCRMutator5.CRCR_MUTATOR5);
+    add("CRCR6", CRCRMutator6.CRCR_MUTATOR6);
+    addGroup("MINE", mine());
+    addGroup("AOD", aod());
+    addGroup("AOR", aor());
+    addGroup("ROR", ror());
+    addGroup("UOI", uoi());
+    addGroup("OBBN", obbn());
+    addGroup("CRCR", crcr());
+    
+    
     addGroup("ALL", all());
+  }
+  
+
+  public static Collection<MethodMutatorFactory> crcr()
+  {
+    return group(new MethodMutatorFactory[] { CRCRMutator1.CRCR_MUTATOR1, CRCRMutator2.CRCR_MUTATOR2, CRCRMutator3.CRCR_MUTATOR3, CRCRMutator4.CRCR_MUTATOR4, CRCRMutator5.CRCR_MUTATOR5, CRCRMutator6.CRCR_MUTATOR6 });
+  }
+  
+  public static Collection<MethodMutatorFactory> aod()
+  {
+    return group(new MethodMutatorFactory[] { AODMutator1.AOD_MUTATOR1, AODMutator2.AOD_MUTATOR2 });
+  }
+  
+  public static Collection<MethodMutatorFactory> aor()
+  {
+    return group(new MethodMutatorFactory[] { AORMutator1.AOR_MUTATOR1, AORMutator2.AOR_MUTATOR2, AORMutator3.AOR_MUTATOR3, AORMutator4.AOR_MUTATOR4 });
+  }
+  
+  public static Collection<MethodMutatorFactory> ror()
+  {
+    return group(new MethodMutatorFactory[] { RORMutator1.ROR_MUTATOR1, RORMutator2.ROR_MUTATOR2, RORMutator3.ROR_MUTATOR3, RORMutator4.ROR_MUTATOR4, RORMutator5.ROR_MUTATOR5 });
+  }
+  
+  public static Collection<MethodMutatorFactory> uoi()
+  {
+    return group(new MethodMutatorFactory[] { UOIMutator1.UOI_MUTATOR1, UOIMutator2.UOI_MUTATOR2, UOIMutator3.UOI_MUTATOR3, UOIMutator4.UOI_MUTATOR4 });
+  }
+  
+  public static Collection<MethodMutatorFactory> obbn()
+  {
+    return group(new MethodMutatorFactory[] { OBBNMutator1.OBBN_MUTATOR1, OBBNMutator2.OBBN_MUTATOR2, OBBNMutator3.OBBN_MUTATOR3 });
+  }
+  
+  public static Collection<MethodMutatorFactory> mine()
+  {
+    return group(new MethodMutatorFactory[] { AODMutator1.AOD_MUTATOR1, AODMutator2.AOD_MUTATOR2, AORMutator1.AOR_MUTATOR1, AORMutator2.AOR_MUTATOR2, AORMutator3.AOR_MUTATOR3, AORMutator4.AOR_MUTATOR4, RORMutator1.ROR_MUTATOR1, RORMutator2.ROR_MUTATOR2, RORMutator3.ROR_MUTATOR3, RORMutator4.ROR_MUTATOR4, RORMutator5.ROR_MUTATOR5, UOIMutator1.UOI_MUTATOR1, UOIMutator2.UOI_MUTATOR2, UOIMutator3.UOI_MUTATOR3, UOIMutator4.UOI_MUTATOR4, ABSMutator.ABS_MUTATOR, OBBNMutator1.OBBN_MUTATOR1, OBBNMutator2.OBBN_MUTATOR2, OBBNMutator3.OBBN_MUTATOR3, CRCRMutator1.CRCR_MUTATOR1, CRCRMutator2.CRCR_MUTATOR2, CRCRMutator3.CRCR_MUTATOR3, CRCRMutator4.CRCR_MUTATOR4, CRCRMutator5.CRCR_MUTATOR5, CRCRMutator6.CRCR_MUTATOR6 });
   }
 
   public static Collection<MethodMutatorFactory> all() {

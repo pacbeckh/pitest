@@ -1,3 +1,18 @@
+#### Changes to fork:
+Included extra mutators mentioned in:
+ * Laurent, T., Papadakis, M., Kintis, M., Henard, C., le Traon, Y. and Ventresque, A., 2017. "Assessing and Improving the Mutation Testing Practice of PIT". International Conference on Software Testing, Verification and Validation. 
+ * Coles, H., Laurent, T., Henard, C., Papadakis, M. and Ventresque, A., 2016. "PIT: a practical mutation testing tool for Java". International Symposium on Software Testing and Analysis (pp. 449-452). [Link](http://researchrepository.ucd.ie/handle/10197/7748)
+ * Laurent, T., Ventresque, A., Papadakis, M., Henard, C. and Traon, Y.L., 2016. Assessing and improving the mutation testing practice of PIT. arXiv preprint arXiv:1601.02351. [Link](https://arxiv.org/abs/1601.02351)
+
+
+The PIT+ version supplied in https://github.com/LaurentTho3/ExtendedPitest contains the extra mutators but the source was not made avaialable.
+We used [Java Decompiler](http://jd.benow.ca/) to obtain the changes made to PIT:
+ * Java compiler version: 5 (49.0)
+ * JD-Core Version:       0.7.1
+
+Unfortunately the original authors did not want to expose where they had hidden the "Matrix that contains for each mutant, by which test it was killed" feature.
+Given that this is not possible with the way PIT executes each mutant (and there were no notable differences between the decompiled version 1.1.5 of PIT and PIT+ ) we conclude that this feature was never made available.
+
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.pitest/pitest/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/org.pitest/pitest)
 [![Build Status](https://travis-ci.org/hcoles/pitest.png?branch=master)](https://travis-ci.org/hcoles/pitest)
 
