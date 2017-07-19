@@ -10,11 +10,7 @@ We used [Java Decompiler](http://jd.benow.ca/) to obtain the changes made to PIT
  * Java compiler version: 5 (49.0)
  * JD-Core Version:       0.7.1
  
-Furthermore, PIT+ is based on the two-year-old version 1.1.5 of PIT which lacks Maven support (something they "forgot" to mention in their publications).
-
-#### Mutant/test matrix
-The authors of "PIT: a practical mutation testing tool for Java" published that the extended version of PIT offered a mutation matrix: A matrix that contains for each mutant, by which tests it was killed. Which would be very convenient if one would want to calculate the subsuming mutants or do other experiments. 
-Given that this actually is not possible with the way PIT executes the tests for each mutant (PIT stops execution after a mutant is detected) and given there were no notable differences (other than the added mutators) between the decompiled version of PIT 1.1.5 and PIT+: I believe this feature was never there in the first place.
+Furthermore, PIT+ is based on the two-year-old version 1.1.5 of PIT which lacks Maven support 
 
 ##### The official readme:
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.pitest/pitest/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/org.pitest/pitest)
